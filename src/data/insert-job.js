@@ -8,7 +8,7 @@ const URL = config();
 const connection = mysql.createConnection(URL);
 
 // CSV 파일 경로
-const csvFilePath = process.cwd() + '/data/FINAL_JOB_DATA.csv';
+const csvFilePath = process.cwd() + '/src/data/FINAL_JOB_DATA.csv';
 
 // CSV 파일을 MySQL 테이블에 삽입하는 함수
 function insertCsvDataToMysql() {
