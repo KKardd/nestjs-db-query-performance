@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model users{
+  id Int @default(autoincrement()) @id
+  name  String
+  gender Boolean
+  createdDate DateTime @default(now()) @map("created_date")
+  updatedDate DateTime @default(now()) @updatedAt @map("updated_date")
+
+  companyId Int? @map("company_id")
+  company company? @relation(fields: [companyId], references: [id])
+}
+
+
+model company {
+  id    Int     @default(autoincrement()) @id
+  name String
+  address String
+  longitude Float
+  latitude Float
+  scale String
+
+  bigJobKindId Int @map("big_job_kind_id")
+  midJobKindId Int @map("mid_job_kind_id")
+  smallJobKindId Int @map("small_job_kind_id")
+
+  bigJobKind bigJobKind @relation(fields: [bigJobKindId], references: [id])
+  midJobKind midJobKind @relation(fields: [midJobKindId], references: [id])
+  smallJobKind smallJobKind @relation(fields: [smallJobKindId], references: [id])
+
+  users users[]
+}
+
+
+model bigJobKind {
+  id  Int @default(autoincrement()) @id
+  name String
+
+  company company[]
+  midJobKind midJobKind[]
+  @@map("big_job_kind")
+}
+
+model midJobKind {
+  id  Int @default(autoincrement()) @id
+  bigJobKindId Int @map("big_job_kind_id")
+  name String
+
+  company company[]
+  bigJobKind bigJobKind @relation(fields: [bigJobKindId], references: [id])
+  smallJobKind smallJobKind[]
+  @@map("mid_job_kind")
+}
+
+model smallJobKind {
+  id  Int @default(autoincrement()) @id
+  midJobKindId Int @map("mid_job_kind_id")
+  name String
+
+  company company[]
+  midJobKind midJobKind @relation(fields: [midJobKindId], references: [id])
+  @@map("small_job_kind")
+}
