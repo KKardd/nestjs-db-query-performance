@@ -8,6 +8,13 @@ import { Company } from './entity-typeorm/company.entity';
 import { BigJobKind } from './entity-typeorm/big-job-kind.entity';
 import { MidJobKind } from './entity-typeorm/mid-job.kind.entity';
 import { SmallJobKind } from './entity-typeorm/small-job-kind.entity';
+import { DistinctPrisma } from './implement/distinct-prisma';
+import { DistinctServer } from './implement/distinct-server';
+import { DistinctTypeORM } from './implement/distinct-typeorm';
+import { SortPrisma } from './implement/sort-prisma';
+import { SortServer } from './implement/sort-server';
+import { SortTypeORM } from './implement/sort-typeorm';
+import { PrismaClient } from '@prisma/client';
 
 @Module({
   imports: [
@@ -20,6 +27,16 @@ import { SmallJobKind } from './entity-typeorm/small-job-kind.entity';
     ]),
   ],
   controllers: [UsersController],
-  providers: [UsersService, UsersReposiotory],
+  providers: [
+    UsersService,
+    UsersReposiotory,
+    DistinctPrisma,
+    DistinctServer,
+    DistinctTypeORM,
+    SortPrisma,
+    SortServer,
+    SortTypeORM,
+    PrismaClient,
+  ],
 })
 export class UsersModule {}
