@@ -1,4 +1,4 @@
-import { Controller, Query } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { FilterUserOption } from './enum/filter-user.enum';
 
@@ -6,6 +6,7 @@ import { FilterUserOption } from './enum/filter-user.enum';
 export class UsersController {
   constructor(private readonly usersServcie: UsersService) {}
 
+  @Get()
   async findAllUsersByFiltering(@Query('filter') type: FilterUserOption) {
     return await this.usersServcie.findAllUsersByFiltering(type);
   }
