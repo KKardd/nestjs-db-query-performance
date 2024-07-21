@@ -6,12 +6,10 @@ export class DistinctServer {
   constructor(private readonly usersRepository: UsersReposiotory) {}
 
   async findTypeORM() {
-    const data = await this.usersRepository.findUsersForTypeORM();
-    console.log(data.length);
+    return await this.usersRepository.findUsersForTypeORM();
   }
 
   async findPrisma() {
-    const data = await this.usersRepository.findUsersForPrisma();
-    console.log(data);
+    return await this.usersRepository.findUsersForPrisma();
   }
 }
