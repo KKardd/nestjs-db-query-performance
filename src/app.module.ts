@@ -5,6 +5,7 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { configGenerator } from './database.config.generator';
+import { PrismaService } from './prisma.service';
 
 @Module({
   imports: [
@@ -18,6 +19,6 @@ import { configGenerator } from './database.config.generator';
     }),
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}
