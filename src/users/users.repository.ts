@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from './entity-typeorm/users.entity';
 import { EntityManager, Repository } from 'typeorm';
 import { PrismaClient } from '@prisma/client';
+import { PrismaService } from 'src/prisma.service';
 
 @Injectable()
 export class UsersReposiotory {
@@ -10,7 +11,7 @@ export class UsersReposiotory {
     @InjectRepository(Users)
     private readonly users: Repository<Users>,
     private readonly entityManager: EntityManager,
-    private readonly prisma: PrismaClient,
+    private readonly prisma: PrismaService,
   ) {}
 
   // 조건없는 모든 유저 찾기(TypeORM)

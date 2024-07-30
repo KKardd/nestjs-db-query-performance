@@ -14,7 +14,7 @@ import { DistinctTypeORM } from './implement/distinct-typeorm';
 import { SortPrisma } from './implement/sort-prisma';
 import { SortServer } from './implement/sort-server';
 import { SortTypeORM } from './implement/sort-typeorm';
-import { PrismaClient } from '@prisma/client';
+import { PrismaService } from 'src/prisma.service';
 
 @Module({
   imports: [
@@ -36,7 +36,7 @@ import { PrismaClient } from '@prisma/client';
     SortPrisma,
     SortServer,
     SortTypeORM,
-    PrismaClient,
+    PrismaService,
   ],
 })
 export class UsersModule {}
