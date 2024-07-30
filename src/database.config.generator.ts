@@ -11,5 +11,6 @@ export const configGenerator = (): TypeOrmModuleOptions => {
     database: process.env.DATABASE_NAME,
     synchronize: false,
     entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+    logging: true,
   };
 };
