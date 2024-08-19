@@ -6,6 +6,7 @@ import { DistinctTypeORM } from './implement/distinct-typeorm';
 import { SortServer } from './implement/sort-server';
 import { SortPrisma } from './implement/sort-prisma';
 import { SortTypeORM } from './implement/sort-typeorm';
+import { NormalQuery } from './implement/normal';
 
 @Injectable()
 export class UsersService {
@@ -16,16 +17,18 @@ export class UsersService {
     private readonly sortServer: SortServer,
     private readonly sortPrisma: SortPrisma,
     private readonly sortTypeORM: SortTypeORM,
+    private readonly normal: NormalQuery,
   ) {}
 
   async findAllUsersByFiltering(type: FilterUserOption) {
     let data;
     switch (type) {
       case FilterUserOption.FIND_TYPEROM:
-        data = await this.distinctServer.findTypeORM();
+        data = await this.normal.findTypeORM();
         break;
       case FilterUserOption.FIND_PRISMA:
-        data = await this.distinctServer.findPrisma();
+        data = await this.normal.findPrisma();
+        break;
     }
     return data;
   }
