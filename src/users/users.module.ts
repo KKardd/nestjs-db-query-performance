@@ -15,6 +15,7 @@ import { SortPrisma } from './implement/sort-prisma';
 import { SortServer } from './implement/sort-server';
 import { SortTypeORM } from './implement/sort-typeorm';
 import { PrismaService } from 'src/prisma.service';
+import { NormalQuery } from './implement/normal';
 
 @Module({
   imports: [
@@ -36,6 +37,7 @@ import { PrismaService } from 'src/prisma.service';
     SortPrisma,
     SortServer,
     SortTypeORM,
+    NormalQuery,
     PrismaService,
   ],
 })
