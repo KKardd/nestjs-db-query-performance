@@ -1,5 +1,5 @@
 const fs = require('fs');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const csv = require('csv-parser');
 const config = require('./database-config.constant');
 

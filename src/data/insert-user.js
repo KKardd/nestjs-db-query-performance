@@ -1,5 +1,5 @@
 const fs = require('fs');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const csv = require('csv-parser');
 const config = require('./database-config.constant');
 
@@ -8,7 +8,7 @@ const URL = config();
 const connection = mysql.createConnection(URL);
 
 // CSV 파일 경로
-const csvFilePath = process.cwd() + '/src/data/student.csv';
+const csvFilePath = process.cwd() + '/src/data/consultant.csv';
 
 // Helper function to execute a MySQL query and return a promise
 function query(sql, args) {
