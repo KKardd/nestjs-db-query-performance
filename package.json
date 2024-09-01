@@ -28,7 +28,7 @@
     "@nestjs/typeorm": "^10.0.2",
     "@prisma/client": "^5.16.1",
     "csv-parser": "^3.0.0",
-    "mysql": "^2.18.1",
+    "mysql2": "^3.11.0",
     "prisma": "^5.16.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1",
