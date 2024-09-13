@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { FilterUserOption } from './enum/filter-user.enum';
 import { DistinctServer } from './implement/distinct-server';
 import { DistinctPrisma } from './implement/distinct-prisma';
@@ -22,6 +22,7 @@ export class UsersService {
 
   async findAllUsersByFiltering(type: FilterUserOption) {
     let data;
+    console.log(type);
     switch (type) {
       case FilterUserOption.FIND_TYPEROM:
         data = await this.normal.findTypeORM();
@@ -29,6 +30,8 @@ export class UsersService {
       case FilterUserOption.FIND_PRISMA:
         data = await this.normal.findPrisma();
         break;
+      default:
+        throw new BadRequestException();
     }
     return data;
   }
