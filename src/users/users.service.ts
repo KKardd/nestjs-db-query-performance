@@ -29,6 +29,10 @@ export class UsersService {
       case FilterUserOption.FIND_PRISMA:
         data = await this.normal.findPrisma();
         break;
+      case FilterUserOption.DISTINCT_DB_TYPEORM:
+        data = await this.distinctServer.findTypeORM();
+      case FilterUserOption.DISTINCT_DB_PRISMA:
+        data = await this.distinctPrisma.findPrisma();
       default:
         throw new BadRequestException();
     }
