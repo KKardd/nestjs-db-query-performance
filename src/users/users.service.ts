@@ -22,7 +22,6 @@ export class UsersService {
 
   async findAllUsersByFiltering(type: FilterUserOption) {
     let data;
-    console.log(type);
     switch (type) {
       case FilterUserOption.FIND_TYPEROM:
         data = await this.normal.findTypeORM();
