@@ -6,10 +6,26 @@ export class DistinctServer {
   constructor(private readonly usersRepository: UsersReposiotory) {}
 
   async findTypeORM() {
-    return await this.usersRepository.findUsersForTypeORM();
+    const data = await this.usersRepository.findUsersForTypeORM();
+    const refinedData = this.distinctName(data);
+    return refinedData;
   }
 
   async findPrisma() {
     return await this.usersRepository.findUsersForPrisma();
+  }
+
+  private distinctName(data) {
+    // 중복된 name을 제거한 배열 생성
+    const uniqueNames = new Set();
+    const filteredData = data.filter((user) => {
+      if (uniqueNames.has(user.name)) {
+        return false; // 중복된 name이면 필터링
+      } else {
+        uniqueNames.add(user.name);
+        return true; // 중복이 없으면 유지
+      }
+    });
+    return filteredData;
   }
 }
