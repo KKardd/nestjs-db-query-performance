@@ -12,7 +12,9 @@ export class DistinctServer {
   }
 
   async findPrisma() {
-    return await this.usersRepository.findUsersForPrisma();
+    const data = await this.usersRepository.findUsersForPrisma();
+    const refinedData = this.distinctName(data);
+    return refinedData;
   }
 
   private distinctName(data) {
