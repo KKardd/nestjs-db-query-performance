@@ -33,6 +33,8 @@ export class UsersService {
         data = await this.distinctServer.findTypeORM();
       case FilterUserOption.DISTINCT_DB_PRISMA:
         data = await this.distinctPrisma.findPrisma();
+      case FilterUserOption.DISTINCT_SERVER:
+        data = await this.distinctServer.findPrisma();
       default:
         throw new BadRequestException();
     }
